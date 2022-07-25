@@ -1,3 +1,5 @@
+import java.awt.image.PackedColorModel;
+
 interface AccountService {
     /**
      * It finds an account by owner id
@@ -13,7 +15,31 @@ interface AccountService {
     long countAccountsWithBalanceGreaterThan(long value);
 }
 
-// Declare and implement your AccountServiceImpl here
+class AccountServiceImpl implements AccountService {
+    private final Account[] accounts;
+
+    public AccountServiceImpl (Account[] accounts){
+        this.accounts = accounts;
+    }
+
+    @Override
+    public Account findAccountByOwnerId(long id) {
+        for (int i  = 0; i < accounts.length(); i++){
+            if (accounts[i].id == id){
+
+            }
+        }
+        return null;
+    }
+
+    @Override
+    public long countAccountsWithBalanceGreaterThan(long value) {
+        for (int i  = 0; i < accounts.length(); i++){
+            if
+        }
+        return 0;
+    }
+}
 
 class Account {
 
@@ -66,4 +92,14 @@ class User {
 }
 
 public class AccountManager {
+    public static void main(String[] args){
+        Account acc1 = new Account(1,250000, 1);
+        User us1 = new User(1, "John", "Smith");
+
+        Account[] accounts = new Account[]{acc1};
+
+        AccountService service = new AccountServiceImpl(accounts);
+        service.findAccountByOwnerId(10L); // returns an account where owner id is 10
+    }
+
 }
