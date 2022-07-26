@@ -11,9 +11,7 @@ public class MakingChanges {
         p1.name = p2.name;
         p2.name = swapName;
 
-        int swapAge = p1.age;
-        p1.age = p2.age;
-        p2.age = p1.age;
+        p1.age = p1.age ^ p2.age ^ (p2.age = p1.age);
     }
 
     public static void main(String args[]){
