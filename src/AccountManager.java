@@ -24,9 +24,9 @@ class AccountServiceImpl implements AccountService {
 
     @Override
     public Account findAccountByOwnerId(long id) {
-        for (int i  = 0; i < accounts.length(); i++){
-            if (accounts[i].id == id){
-
+        for (int i  = 0; i < accounts.length; i++){
+            if (accounts[i].getOwner().getId() == id){
+                return accounts[i];
             }
         }
         return null;
@@ -34,10 +34,13 @@ class AccountServiceImpl implements AccountService {
 
     @Override
     public long countAccountsWithBalanceGreaterThan(long value) {
-        for (int i  = 0; i < accounts.length(); i++){
-            if
+        int counter = 0;
+        for (int i  = 0; i < accounts.length; i++) {
+            if (accounts[i].getBalance() > value) {
+                counter++;
+            }
         }
-        return 0;
+        return counter;
     }
 }
 
@@ -93,13 +96,14 @@ class User {
 
 public class AccountManager {
     public static void main(String[] args){
-        Account acc1 = new Account(1,250000, 1);
-        User us1 = new User(1, "John", "Smith");
+        User us1 = new User(10L, "John", "Smith");
+        Account acc1 = new Account(1,250000L, us1);
 
         Account[] accounts = new Account[]{acc1};
 
         AccountService service = new AccountServiceImpl(accounts);
-        service.findAccountByOwnerId(10L); // returns an account where owner id is 10
+        System.out.println(service.findAccountByOwnerId(10L)); // returns an account where owner id is 10
+        System.out.println(service.countAccountsWithBalanceGreaterThan(249999L));
     }
 
 }
