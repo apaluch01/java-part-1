@@ -96,14 +96,5 @@ class User {
 
 public class AccountManager {
     public static void main(String[] args){
-        User us1 = new User(10L, "John", "Smith");
-        Account acc1 = new Account(1,250000L, us1);
-
-        Account[] accounts = new Account[]{acc1};
-
-        AccountService service = new AccountServiceImpl(accounts);
-        System.out.println(service.findAccountByOwnerId(10L)); // returns an account where owner id is 10
-        System.out.println(service.countAccountsWithBalanceGreaterThan(249999L));
     }
-
 }
