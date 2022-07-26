@@ -8,8 +8,8 @@ public class ReverseStringMaker {
         int length = stringToReverse.length();
         ToReverseMethods reverse = new ToReverseMethods();
 
-        System.out.println(reverse.iterationReverse(stringToReverse, length));
+        System.out.println(reverse.iterationReverse(stringToReverse));
         System.out.println(reverse.stringBuilderReverse(stringToReverse));
-        System.out.println(reverse.charAdditionReverse(stringToReverse, length));
+        System.out.println(reverse.charAdditionReverse(stringToReverse));
     }
 }
