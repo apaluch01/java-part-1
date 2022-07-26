@@ -1,9 +1,23 @@
 import java.util.Scanner;
 
+//too many numbers compared to given length
+class TooManyNumbers extends Exception {
+
+}
+//not enough numbers compared to given length
+class NotEnoughNumbers extends Exception {
+
+}
+//invalid input
+class InvalidInput extends Exception {
+
+}
+
 public class CheckIfArrayIsSorted {
     public static void main (String[] args) {
         Scanner input = new Scanner(System.in);
         boolean isSorted = true;
+
         int length = input.nextInt();
         input.nextLine();
         String numbers = input.nextLine();
