@@ -26,19 +26,24 @@ public class CheckIfArrayIsSorted {
 
         int length = input.nextInt();
         input.nextLine();
+        String numbers = input.nextLine();
 
-        int spaceCount = 0;
-        try{
-            String numbers = input.nextLine();
+        try {
             for (int i = 0; i < numbers.length(); i++) {
-                if ((numbers.charAt(i) < 48) || (numbers.charAt(i) > 57)) {
+                if ((numbers.charAt(i) == 32) && (numbers.charAt(i + 1) == 32)) {
+                    throw new InvalidInput("You can only input numbers and singular spaces to separate them");
+                }
+            }
+
+            int spaceCount = 0;
+            for (int i = 0; i < numbers.length(); i++) {
+                if (((numbers.charAt(i) >=  48) && (numbers.charAt(i) <= 57)) || numbers.charAt(i) == 32) {
                     if (numbers.charAt(i) == 32) {
                         spaceCount++;
                     }
-                    else {
-                        throw new InvalidInput("You can only input numbers and spaces to separate them");
-                        break;
-                    }
+                }
+                else {
+                    throw new InvalidInput("You can only input numbers and singular spaces to separate them");
                 }
             }
 
@@ -53,13 +58,7 @@ public class CheckIfArrayIsSorted {
                 }
             }
         }
-        catch (InvalidInput e){
-            System.out.println(e.getMessage());
-        }
-        catch (TooManyNumbers e){
-            System.out.println(e.getMessage());
-        }
-        catch (NotEnoughNumbers e){
+        catch (InvalidInput | NotEnoughNumbers | TooManyNumbers e){
             System.out.println(e.getMessage());
         }
 
