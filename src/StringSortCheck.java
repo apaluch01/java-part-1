@@ -19,8 +19,8 @@ class InvalidInput extends Exception {
     }
 }
 
-public class CheckIfArrayIsSorted {
-    static boolean exceptionHandler(String numbers, int userLength) {
+public class StringSortCheck {
+    static boolean inputExceptionHandling(String numbers, int userLength) {
         try {
             if (numbers.charAt(0) == 32) {
                 throw new InvalidInput("You should start input with a number");
@@ -65,25 +65,29 @@ public class CheckIfArrayIsSorted {
         }
         return true;
     }
+
+    static boolean CheckingIfArrayIsSorted (String[] array, int length) {
+        boolean isSorted = true;
+        for (int i = 0; i < length - 1; i++){
+            if (Integer.parseInt(array[i]) > Integer.parseInt(array[i + 1])){
+                isSorted = false;
+                break;
+            }
+        }
+
+        return(isSorted);
+    }
+
     public static void main (String[] args) {
         Scanner input = new Scanner(System.in);
-        boolean isSorted = true;
 
         int length = input.nextInt();
         input.nextLine();
         String numbers = input.nextLine();
 
-        if (exceptionHandler(numbers, length)) {
+        if (inputExceptionHandling(numbers, length)) {
             String[] array = numbers.split(" ");
-
-            for (int i = 0; i < length - 1; i++){
-                if (Integer.parseInt(array[i]) > Integer.parseInt(array[i + 1])){
-                    isSorted = false;
-                    break;
-                }
-            }
-
-            System.out.println(isSorted);
+            System.out.println(CheckingIfArrayIsSorted(array, length));
         }
     }
 }
