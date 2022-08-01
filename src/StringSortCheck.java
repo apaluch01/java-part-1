@@ -21,24 +21,24 @@ class InvalidInput extends RuntimeException {
 
 public class StringSortCheck {
     static void inputExceptionHandling(String numbers, int userLength) throws RuntimeException{
-        if (numbers.charAt(0) == 32) {
+        if (numbers.substring(0, 1).equals(" ")) {
             throw new InvalidInput("You should start input with a number");
         }
 
-        if (numbers.charAt(numbers.length() - 1) == 32) {
+        if (numbers.substring(numbers.length() - 1).equals(" ")) {
             throw new InvalidInput("You should use spaces only for separating numbers");
         }
 
         for (int i = 0; i < numbers.length() - 1; i++) {
-            if ((numbers.charAt(i) == 32) && (numbers.charAt(i + 1) == 32)) {
+            if ((numbers.substring(i, i + 1).equals(" ")) && (numbers.substring(i + 1, i + 2).equals(" "))) {
                 throw new InvalidInput("You can only input numbers and singular spaces to separate them");
             }
         }
 
         int spaceCount = 0;
         for (int i = 0; i < numbers.length(); i++) {
-            if (((numbers.charAt(i) >=  48) && (numbers.charAt(i) <= 57)) || numbers.charAt(i) == 32) {
-                if (numbers.charAt(i) == 32) {
+            if (((numbers.charAt(i) >=  48) && (numbers.charAt(i) <= 57)) || numbers.substring(i, i + 1).equals(" ")) {
+                if (numbers.substring(i, i + 1).equals(" ")) {
                     spaceCount++;
                 }
             }
