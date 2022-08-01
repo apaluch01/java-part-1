@@ -78,13 +78,9 @@ public class StringSortCheck {
         input.nextLine();
         String numbers = input.nextLine();
 
-        try {
-            inputExceptionHandling(numbers, length);
-            String[] array = numbers.split(" ");
-            System.out.println(checkIfArrayIsSorted(array, length));
-        }
-        catch (RuntimeException e){
-            System.out.println(e.getMessage());
-        }
+
+        inputExceptionHandling(numbers, length);
+        String[] array = numbers.split(" ");
+        System.out.println(checkIfArrayIsSorted(array, length));
     }
 }
