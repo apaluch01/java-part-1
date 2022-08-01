@@ -59,7 +59,7 @@ public class StringSortCheck {
         }
     }
 
-    static boolean CheckingIfArrayIsSorted (String[] array, int length) {
+    static boolean checkIfArrayIsSorted (String[] array, int length) {
         boolean isSorted = true;
         for (int i = 0; i < length - 1; i++){
             if (Integer.parseInt(array[i]) > Integer.parseInt(array[i + 1])){
@@ -81,7 +81,7 @@ public class StringSortCheck {
         try {
             inputExceptionHandling(numbers, length);
             String[] array = numbers.split(" ");
-            System.out.println(CheckingIfArrayIsSorted(array, length));
+            System.out.println(checkIfArrayIsSorted(array, length));
         }
         catch (RuntimeException e){
             System.out.println(e.getMessage());
