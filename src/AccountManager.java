@@ -1,3 +1,5 @@
+import sun.security.provider.certpath.Builder;
+
 import java.awt.image.PackedColorModel;
 
 interface AccountService {
@@ -50,10 +52,35 @@ class Account {
     private long balance;
     private User owner;
 
-    public Account(long id, long balance, User owner) {
-        this.id = id;
-        this.balance = balance;
-        this.owner = owner;
+    private Account(Builder builder) {
+        this.id = builder.id;
+        this.balance = builder.balance;
+        this.owner = builder.owner;
+    }
+
+    public static class Builder {
+        private long id;
+        private long balance;
+        private User owner;
+
+        public Builder id(final long id){
+            this.id = id;
+            return this;
+        }
+
+        public Builder balance(final long balance){
+            this.balance = balance;
+            return this;
+        }
+
+        public Builder id(final User owner){
+            this.owner = owner;
+            return this;
+        }
+
+        public Account build() {
+            return new Account(this);
+        }
     }
 
     public long getId() {
@@ -75,10 +102,35 @@ class User {
     private String firstName;
     private String lastName;
 
-    public User(long id, String firstName, String lastName) {
-        this.id = id;
-        this.firstName = firstName;
-        this.lastName = lastName;
+    private User(Builder builder) {
+        this.id = builder.id;
+        this.firstName = builder.firstName;
+        this.lastName = builder.lastName;
+    }
+
+    public static class Builder {
+        private long id;
+        private String firstName;
+        private String lastName;
+
+        public Builder id(final long id) {
+            this.id = id;
+            return this;
+        }
+
+        public Builder firstName(final String firstName) {
+            this.firstName = firstName;
+            return this;
+        }
+
+        public Builder lastName(final String lastName) {
+            this.lastName = lastName;
+            return this;
+        }
+
+        public User build() {
+            return new User(this);
+        }
     }
 
     public long getId() {
