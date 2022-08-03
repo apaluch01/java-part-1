@@ -14,27 +14,48 @@ public class AccountManagerTest {
         @Parameterized.Parameters
         public static Collection<Object[]> getBalance() {
             return Arrays.asList(new Object[][]{
-                    {0, 3, Arrays.asList(new Account(1, 200000, new User(1, "John",
-                            "Doe")), new Account(2, 250000, new User(2, "Max",
-                            "Maximoff")), new Account(3, 300000, new User(3, "Jonathan", "Cage")))},
-                    {199999, 3, Arrays.asList(new Account(1, 200000, new User(1, "John",
-                            "Doe")), new Account(2, 250000, new User(2, "Max",
-                            "Maximoff")), new Account(3, 300000, new User(3, "Jonathan", "Cage")))},
-                    {200000, 2, Arrays.asList(new Account(1, 200000, new User(1, "John",
-                            "Doe")), new Account(2, 250000, new User(2, "Max",
-                            "Maximoff")), new Account(3, 300000, new User(3, "Jonathan", "Cage")))},
-                    {249999, 2, Arrays.asList(new Account(1, 200000, new User(1, "John",
-                            "Doe")), new Account(2, 250000, new User(2, "Max",
-                            "Maximoff")), new Account(3, 300000, new User(3, "Jonathan", "Cage")))},
-                    {250000, 1, Arrays.asList(new Account(1, 200000, new User(1, "John",
-                            "Doe")), new Account(2, 250000, new User(2, "Max",
-                            "Maximoff")), new Account(3, 300000, new User(3, "Jonathan", "Cage")))},
-                    {299999, 1, Arrays.asList(new Account(1, 200000, new User(1, "John",
-                            "Doe")), new Account(2, 250000, new User(2, "Max",
-                            "Maximoff")), new Account(3, 300000, new User(3, "Jonathan", "Cage")))},
-                    {300000, 0, Arrays.asList(new Account(1, 200000, new User(1, "John",
-                            "Doe")), new Account(2, 250000, new User(2, "Max",
-                            "Maximoff")), new Account(3, 300000, new User(3, "Jonathan", "Cage")))},
+                    {0, 3, Arrays.asList(new Account.Builder().id(1).balance(200000)
+                            .owner(new User.Builder().id(1).firstName("John").lastName("Doe").build()).build(),
+                            new Account.Builder().id(2).balance(250000)
+                                    .owner(new User.Builder().id(2).firstName("Max").lastName("Maximoff").build()).build(),
+                            new Account.Builder().id(3).balance(300000)
+                            .owner(new User.Builder().id(3).firstName("Jonathan").lastName("Cage").build()).build())},
+                    {199999, 3, Arrays.asList(new Account.Builder().id(1).balance(200000)
+                                    .owner(new User.Builder().id(1).firstName("John").lastName("Doe").build()).build(),
+                            new Account.Builder().id(2).balance(250000)
+                                    .owner(new User.Builder().id(2).firstName("Max").lastName("Maximoff").build()).build(),
+                            new Account.Builder().id(3).balance(300000)
+                                    .owner(new User.Builder().id(3).firstName("Jonathan").lastName("Cage").build()).build())},
+                    {200000, 2, Arrays.asList(new Account.Builder().id(1).balance(200000)
+                                    .owner(new User.Builder().id(1).firstName("John").lastName("Doe").build()).build(),
+                            new Account.Builder().id(2).balance(250000)
+                                    .owner(new User.Builder().id(2).firstName("Max").lastName("Maximoff").build()).build(),
+                            new Account.Builder().id(3).balance(300000)
+                                    .owner(new User.Builder().id(3).firstName("Jonathan").lastName("Cage").build()).build())},
+                    {249999, 2, Arrays.asList(new Account.Builder().id(1).balance(200000)
+                                    .owner(new User.Builder().id(1).firstName("John").lastName("Doe").build()).build(),
+                            new Account.Builder().id(2).balance(250000)
+                                    .owner(new User.Builder().id(2).firstName("Max").lastName("Maximoff").build()).build(),
+                            new Account.Builder().id(3).balance(300000)
+                                    .owner(new User.Builder().id(3).firstName("Jonathan").lastName("Cage").build()).build())},
+                    {250000, 1, Arrays.asList(new Account.Builder().id(1).balance(200000)
+                                    .owner(new User.Builder().id(1).firstName("John").lastName("Doe").build()).build(),
+                            new Account.Builder().id(2).balance(250000)
+                                    .owner(new User.Builder().id(2).firstName("Max").lastName("Maximoff").build()).build(),
+                            new Account.Builder().id(3).balance(300000)
+                                    .owner(new User.Builder().id(3).firstName("Jonathan").lastName("Cage").build()).build())},
+                    {299999, 1, Arrays.asList(new Account.Builder().id(1).balance(200000)
+                                    .owner(new User.Builder().id(1).firstName("John").lastName("Doe").build()).build(),
+                            new Account.Builder().id(2).balance(250000)
+                                    .owner(new User.Builder().id(2).firstName("Max").lastName("Maximoff").build()).build(),
+                            new Account.Builder().id(3).balance(300000)
+                                    .owner(new User.Builder().id(3).firstName("Jonathan").lastName("Cage").build()).build())},
+                    {300000, 0, Arrays.asList(new Account.Builder().id(1).balance(200000)
+                                    .owner(new User.Builder().id(1).firstName("John").lastName("Doe").build()).build(),
+                            new Account.Builder().id(2).balance(250000)
+                                    .owner(new User.Builder().id(2).firstName("Max").lastName("Maximoff").build()).build(),
+                            new Account.Builder().id(3).balance(300000)
+                                    .owner(new User.Builder().id(3).firstName("Jonathan").lastName("Cage").build()).build())},
             });
         }
 
@@ -63,8 +84,8 @@ public class AccountManagerTest {
     public static class NotParameterizedTests {
         @Test
         public void canFindAccountByOwnerId() {
-            User us1 = new User(10, "John", "Smith");
-            Account acc1 = new Account(1,250000, us1);
+            User us1 = new User.Builder().id(10).firstName("John").lastName("Smith").build();
+            Account acc1 = new Account.Builder().id(1).balance(250000).owner(us1).build();
 
             Account[] accounts = new Account[]{acc1};
             AccountService service = new AccountServiceImpl(accounts);
