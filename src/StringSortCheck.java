@@ -37,7 +37,7 @@ public class StringSortCheck {
 
         int spaceCount = 0;
         for (int i = 0; i < numbers.length(); i++) {
-            if (((numbers.charAt(i) >=  48) && (numbers.charAt(i) <= 57)) || numbers.substring(i, i + 1).equals(" ")) {//48 = 0, 57 = 9 in ASCII
+            if (((numbers.substring(i, i + 1).matches("\\d")) && (numbers.substring(i, i + 1).matches("\\d"))) || numbers.substring(i, i + 1).equals(" ")) {//48 = 0, 57 = 9 in ASCII
                 if (numbers.substring(i, i + 1).equals(" ")) {
                     spaceCount++;
                 }
