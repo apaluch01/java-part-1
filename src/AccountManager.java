@@ -73,7 +73,7 @@ class Account {
             return this;
         }
 
-        public Builder id(final User owner){
+        public Builder owner(final User owner){
             this.owner = owner;
             return this;
         }
